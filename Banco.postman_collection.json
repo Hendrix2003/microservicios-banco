@@ -1,0 +1,706 @@
+{
+  "info": {
+    "name": "Banco Microservicios - Devsu",
+    "description": "Pruebas de los microservicios cliente (8081) y cuenta (8082). Correr las carpetas en orden.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrlCliente",
+      "value": "http://localhost:8081/api"
+    },
+    {
+      "key": "baseUrlCuenta",
+      "value": "http://localhost:8082/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Clientes (8081)",
+      "item": [
+        {
+          "name": "Crear Carlos Ramirez",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            },
+            "description": "Crea el cliente y manda un evento por rabbitmq al servicio de cuentas.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos Ramirez\",\n  \"genero\": \"M\",\n  \"edad\": 30,\n  \"identificacion\": \"1700000001\",\n  \"direccion\": \"Av. Principal 123\",\n  \"telefono\": \"0991234567\",\n  \"clienteId\": \"cramirez\",\n  \"contrasena\": \"1234\",\n  \"estado\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Crear Maria Gonzalez",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            },
+            "description": "Crea el cliente y manda un evento por rabbitmq al servicio de cuentas.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Maria Gonzalez\",\n  \"genero\": \"F\",\n  \"edad\": 28,\n  \"identificacion\": \"1700000002\",\n  \"direccion\": \"Calle Central 456\",\n  \"telefono\": \"0987654321\",\n  \"clienteId\": \"mgonzalez\",\n  \"contrasena\": \"5678\",\n  \"estado\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Crear Juan Perez",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            },
+            "description": "Crea el cliente y manda un evento por rabbitmq al servicio de cuentas.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Juan Perez\",\n  \"genero\": \"M\",\n  \"edad\": 35,\n  \"identificacion\": \"1700000003\",\n  \"direccion\": \"Av. Norte 789\",\n  \"telefono\": \"0971112222\",\n  \"clienteId\": \"jperez\",\n  \"contrasena\": \"1245\",\n  \"estado\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar clientes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener cliente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes/cramirez",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes",
+                "cramirez"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Actualizar cliente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes/cramirez",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes",
+                "cramirez"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos Ramirez\",\n  \"genero\": \"M\",\n  \"edad\": 31,\n  \"identificacion\": \"1700000001\",\n  \"direccion\": \"Av. Principal 123\",\n  \"telefono\": \"0991234567\",\n  \"clienteId\": \"cramirez\",\n  \"contrasena\": \"1234\",\n  \"estado\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Cuentas (8082)",
+      "item": [
+        {
+          "name": "Crear cuenta 478758",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "description": "Valida que el cliente exista en la copia local antes de crear la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"478758\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 2000,\n  \"estado\": true,\n  \"clienteId\": \"cramirez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Crear cuenta 225487",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "description": "Valida que el cliente exista en la copia local antes de crear la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"tipoCuenta\": \"Corriente\",\n  \"saldoInicial\": 100,\n  \"estado\": true,\n  \"clienteId\": \"mgonzalez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Crear cuenta 495878",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "description": "Valida que el cliente exista en la copia local antes de crear la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"495878\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 0,\n  \"estado\": true,\n  \"clienteId\": \"jperez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Crear cuenta 496825",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "description": "Valida que el cliente exista en la copia local antes de crear la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"496825\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 540,\n  \"estado\": true,\n  \"clienteId\": \"mgonzalez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Crear cuenta 585545",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "description": "Valida que el cliente exista en la copia local antes de crear la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"585545\",\n  \"tipoCuenta\": \"Corriente\",\n  \"saldoInicial\": 1000,\n  \"estado\": true,\n  \"clienteId\": \"cramirez\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar cuentas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener cuenta",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas/478758",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas",
+                "478758"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Movimientos (8082)",
+      "item": [
+        {
+          "name": "Retiro 575 (cuenta 478758)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/movimientos",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "description": "Valor positivo es deposito, negativo es retiro. Actualiza el saldo de la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"478758\",\n  \"valor\": -575,\n  \"fecha\": \"2022-02-09T10:00:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Deposito 600 (cuenta 225487)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/movimientos",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "description": "Valor positivo es deposito, negativo es retiro. Actualiza el saldo de la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"valor\": 600,\n  \"fecha\": \"2022-02-10T10:00:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Deposito 150 (cuenta 495878)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/movimientos",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "description": "Valor positivo es deposito, negativo es retiro. Actualiza el saldo de la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"495878\",\n  \"valor\": 150,\n  \"fecha\": \"2022-02-10T11:00:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retiro 540 (cuenta 496825)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/movimientos",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "description": "Valor positivo es deposito, negativo es retiro. Actualiza el saldo de la cuenta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"496825\",\n  \"valor\": -540,\n  \"fecha\": \"2022-02-08T09:00:00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar movimientos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/movimientos",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Reportes",
+      "item": [
+        {
+          "name": "Estado de cuenta - Maria Gonzalez",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/reportes?cliente=mgonzalez&fechaInicio=2022-02-01&fechaFin=2022-02-28",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "reportes"
+              ],
+              "query": [
+                {
+                  "key": "cliente",
+                  "value": "mgonzalez"
+                },
+                {
+                  "key": "fechaInicio",
+                  "value": "2022-02-01"
+                },
+                {
+                  "key": "fechaFin",
+                  "value": "2022-02-28"
+                }
+              ]
+            },
+            "description": "Reporte por cliente y rango de fechas. Devuelve JSON."
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Casos de error",
+      "item": [
+        {
+          "name": "Saldo no disponible",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/movimientos",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            },
+            "description": "Debe responder 400 con el mensaje 'Saldo no disponible'.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"495878\",\n  \"valor\": -5000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Cliente no registrado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            },
+            "description": "El cliente no esta en la copia local, responde 400.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"999999\",\n  \"tipoCuenta\": \"Ahorros\",\n  \"saldoInicial\": 100,\n  \"estado\": true,\n  \"clienteId\": \"noexiste\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Cuenta no encontrada",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCuenta}}/cuentas/000000",
+              "host": [
+                "{{baseUrlCuenta}}"
+              ],
+              "path": [
+                "cuentas",
+                "000000"
+              ]
+            },
+            "description": "Responde 404."
+          }
+        },
+        {
+          "name": "Validacion sin nombre",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlCliente}}/clientes",
+              "host": [
+                "{{baseUrlCliente}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            },
+            "description": "El nombre es obligatorio, responde 400.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": \"xx\",\n  \"contrasena\": \"123\",\n  \"estado\": true,\n  \"identificacion\": \"999\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
